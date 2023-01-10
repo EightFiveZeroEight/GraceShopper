@@ -8,16 +8,20 @@ const Product = db.define("product", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  // imageURL: {
-  //   type: sequelize.
-  //   allowNull: false,
-  // },
   price: {
     type: Sequelize.FLOAT,
     allowNull: false,
   },
   category: {
     type: Sequelize.ENUM({ values: ["food", "clothing", "electronics"] }),
+    allowNull: false,
+  },
+  inStock: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
 });

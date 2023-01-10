@@ -2,12 +2,11 @@
 
 const db = require('./db')
 const Product = require('./models/Product')
-
 const User = require('./models/User')
 
 //associations could go here!
-User.hasMany(Product, { through: "cart" });
-Product.belongsToMany(User, { through: "cart" });
+User.hasMany(Product);
+Product.belongsToMany(User);
 
 // This will create a new model called cart, which will represent the join table for the many-to-many relationship between User and Product. Each row in the cart table will have a userId and a productId that link the user to the product they have added to their cart.
 
