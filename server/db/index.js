@@ -10,8 +10,9 @@ const Orders = require("./models/Orders");
 
 //associations could go here!
 Product.hasMany(OrderLineItems, { as: "items", foreignKey: "product_id" });
-OrderLineItems.belongsTo(Product, { as: "product", foreignKey: "product_id" });
 // Product.hasMany(OrderLineItems, { as: 'items', foreignKey: 'product_id' });: This association creates a one-to-many relationship between the Product and OrderLineItems models, where each product can have multiple order line items, but each order line item belongs to one product. This association also creates an items accessor on the Product model, which allows you to retrieve all of the associated order line items.
+OrderLineItems.belongsTo(Product, { as: "product", foreignKey: "product_id" });
+// OrderLineItems.belongsTo(Product, { as: 'product', foreignKey: 'product_id' });: This association creates the inverse relationship of the above, It creates a many-to-one relationship between the OrderLineItems and Product models.
 
 User.hasMany(Orders, { as: "orders", foreignKey: "user_id" });
 // User.hasMany(Orders, { as: 'orders', foreignKey: 'user_id' });: This association creates a one-to-many relationship between the User and Orders models, where each user can have multiple orders, but each order belongs to one user. This association also creates an orders accessor on the User model, which allows you to retrieve all of the associated orders.
@@ -26,8 +27,6 @@ Cart.belongsTo(User, { as: "user", foreignKey: "user_id" });
 Cart.hasMany(CartItems, { as: "items", foreignKey: "cart_id" });
 // Cart.hasMany(CartItems, { as: 'items', foreignKey: 'cart_id' });: This association creates a one-to-many relationship between the Cart
 CartItems.belongsTo(Cart, { as: "cart", foreignKey: "cart_id" });
-// CartItems.belongsTo(Cart, { as: 'cart', foreignKey: 'cart_id' });
-
 
 Orders.hasMany(OrderLineItems, { as: "items", foreignKey: "order_id" });
 OrderLineItems.belongsTo(Orders, { as: "order", foreignKey: "order_id" });
