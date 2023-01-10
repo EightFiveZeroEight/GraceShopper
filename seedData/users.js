@@ -3,7 +3,7 @@ const userType = ['admin', 'user', 'guest']
 const userData = [
   {
     username: "hharkin0",
-    userType: userType[1],
+    userType: userType[1], 
     password: "caZncbz0gz",
     email: "gfairey0@forbes.com",
   },
