@@ -40,6 +40,7 @@ module.exports = {
   db,
   models: {
     User,
+    Product,
     Orders,
   },
 };
