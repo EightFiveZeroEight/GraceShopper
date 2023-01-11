@@ -1,7 +1,8 @@
 'use strict'
 
-const {db, models: {User} } = require('../server/db')
+const {db, models: {User, Orders} } = require('../server/db')
 const  userData  = require('../seedData/users')
+const orderData = require('../seedData/order')
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -18,13 +19,15 @@ async function seed() {
     userData.map(user=>User.create(user))
   )
 
+  const orders = await Promise.all(
+    orderData.map(order=>Orders.create(order))
+  )
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
   return {
-    users: {
-      cody: users[0],
-      murphy: users[1]
-    }
+    users,
+    orders
   }
 }
 
