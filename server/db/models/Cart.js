@@ -9,7 +9,7 @@ const Cart = db.define("cart", {
     allowNull: true,
   },
   cartSession: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.STRING,
     unique: true,
     allowNull: false,
   },
