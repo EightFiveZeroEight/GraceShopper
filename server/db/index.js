@@ -43,6 +43,7 @@ module.exports = {
     User,
     Product,
     Orders,
+    Cart,
     CartItems
   },
 };
