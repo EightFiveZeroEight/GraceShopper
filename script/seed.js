@@ -2,13 +2,14 @@
 
 const {
   db,
-  models: { User, Product, Orders, Cart, CartItems },
+  models: { User, Product, Orders, Cart, CartItems, OrderLineItems },
 } = require("../server/db");
 const userData = require("../seedData/users");
 const productData = require("../seedData/products");
 const orderData = require("../seedData/order");
 const cartData = require("../seedData/Cart");
 const cartItemsData = require("../seedData/cartItems");
+const orderLineItemsData = require("../seedData/orderLineItems");
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -36,6 +37,10 @@ async function seed() {
   //create cartItems
   const cartItems = await Promise.all(
     cartItemsData.map((item) => CartItems.create(item))
+  );
+  // create orderLineItems
+  const orderLineItems = await Promise.all(
+    orderLineItemsData.map((item) => OrderLineItems.create(item))
   );
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
