@@ -2,17 +2,17 @@
 
 const {
   db,
-  models: { User, Product, Orders, Cart },
+  models: { User, Product, Orders, Cart, CartItems },
 } = require("../server/db");
 const userData = require("../seedData/users");
 const productData = require("../seedData/products");
 const orderData = require("../seedData/order");
 const cartData = require("../seedData/Cart");
+const cartItemsData = require("../seedData/cartItems");
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
  */
-
 
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
@@ -23,13 +23,20 @@ async function seed() {
     // User.create({username: 'yo', userType: 'admin', password: 'password', email: 'yo@gmail.com'}),
     userData.map((user) => User.create(user))
   );
+  //create products
   const products = await Promise.all(
     productData.map((products) => Product.create(products))
   );
+  //create orders
   const orders = await Promise.all(
     orderData.map((order) => Orders.create(order))
   );
+  // create cart
   const carts = await Promise.all(cartData.map((cart) => Cart.create(cart)));
+  //create cartItems
+  const cartItems = await Promise.all(
+    cartItemsData.map((item) => CartItems.create(item))
+  );
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
   return {
@@ -37,6 +44,7 @@ async function seed() {
     products,
     orders,
     carts,
+    cartItems,
   };
 }
 

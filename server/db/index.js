@@ -24,6 +24,7 @@ User.hasOne(Cart, { as: "cart", foreignKey: "user_id" });
 Cart.belongsTo(User, { as: "user", foreignKey: "user_id" });
 // Cart.belongsTo(User, { as: 'user', foreignKey: 'user_id' });: This association creates the inverse relationship of the above, It creates a one-to-one relationship between the Cart and User models.
 
+
 Cart.hasMany(CartItems, { as: "items", foreignKey: "cart_id" });
 // Cart.hasMany(CartItems, { as: 'items', foreignKey: 'cart_id' });: This association creates a one-to-many relationship between the Cart
 CartItems.belongsTo(Cart, { as: "cart", foreignKey: "cart_id" });
@@ -42,6 +43,7 @@ module.exports = {
     User,
     Product,
     Orders,
-    Cart
+    Cart,
+    CartItems
   },
 };
