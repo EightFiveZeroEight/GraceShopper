@@ -1,58 +1,13 @@
-const orderLineItemsData = [
-  {
-    id: 1,
-    quantity: 2,
-    price: 1,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    product_id: 1,
-    order_id: 1,
-  },
-  {
-    id: 2,
-    quantity: 2,
-    price: 1,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    product_id: 2,
-    order_id: 2,
-  },
-  {
-    id: 3,
-    quantity: 2,
-    price: 1,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    product_id: 3,
-    order_id: 3,
-  },
-  {
-    id: 4,
-    quantity: 2,
-    price: 1,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    product_id: 4,
-    order_id: 4,
-  },
-  {
-    id: 5,
-    quantity: 2,
-    price: 1,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    product_id: 5,
-    order_id: 5,
-  },
-  {
-    id: 6,
-    quantity: 2,
-    price: 1,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    product_id: 6,
-    order_id: 6,
-  },
-];
+const { faker } = require("@faker-js/faker");
+
+const orderLineItemsData = [...Array(100)].map((singleLineItem, index) => ({
+  // id: index+1,
+  quantity: faker.datatype.number({min: 1, max:100, precision:1}),
+  price: faker.commerce.price(),
+  order_id: index + 1,
+  product_id: faker.datatype.number(100),
+}));
+
+
 
 module.exports = orderLineItemsData;

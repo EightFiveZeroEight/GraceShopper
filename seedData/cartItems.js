@@ -1,7 +1,9 @@
-const cartItemsData = [{
-  quantity: 2,
-  productId: 4,
-  // cart_id: 1
-}]
+const { faker } = require("@faker-js/faker");
 
-module.exports = cartItemsData
+const cartItemsData = [...Array(100)].map((singleCart, index) => ({
+  quantity: (Math.floor(Math.random() * 100)+1),
+  productId: (Math.floor(Math.random() * 100)+1),
+  cart_id: index + 1,
+}));
+
+module.exports = cartItemsData;
