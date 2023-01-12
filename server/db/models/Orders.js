@@ -17,7 +17,7 @@ const Orders = db.define("orders", {
   description: {
     type: Sequelize.TEXT,
     allowNull: false,
-    default: "Text not set",
+    defaultValue: "Text not set",
   },
 });
 
