@@ -15,13 +15,25 @@ const orderData = [
     invoice: "3",
     total: "23.54",
     date: new Date(),
-    user_id: 1
+    user_id: 1,
   },
   {
     invoice: "4",
     total: "23.54",
     date: new Date(),
-    user_id: 3
+    user_id: 3,
+  },
+  {
+    invoice: "5",
+    total: "23.54",
+    date: new Date(),
+    user_id: 6,
+  },
+  {
+    invoice: "6",
+    total: "23.54",
+    date: new Date(),
+    user_id: 6,
   },
 ];
 
