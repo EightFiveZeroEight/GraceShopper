@@ -1,40 +1,10 @@
-const orderData = [
-  {
-    invoice: "1",
-    total: "23.54",
-    date: new Date(),
-    user_id: 2, // foriegn key
-  },
-  {
-    invoice: "2",
-    total: "23.54",
-    date: new Date(),
-    user_id: 2,
-  },
-  {
-    invoice: "3",
-    total: "23.54",
-    date: new Date(),
-    user_id: 1,
-  },
-  {
-    invoice: "4",
-    total: "23.54",
-    date: new Date(),
-    user_id: 3,
-  },
-  {
-    invoice: "5",
-    total: "23.54",
-    date: new Date(),
-    user_id: 6,
-  },
-  {
-    invoice: "6",
-    total: "23.54",
-    date: new Date(),
-    user_id: 6,
-  },
-];
+const { faker } = require("@faker-js/faker");
+
+const orderData = [...Array(1)].map((singleItem) => ({
+  invoice: faker.datatype.uuid(),
+  total: faker.commerce.price(),
+  date: faker.datatype.datetime(),
+  user_id: 1, //Random 1-100
+}));
 
 module.exports = orderData;

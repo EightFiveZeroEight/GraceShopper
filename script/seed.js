@@ -7,7 +7,7 @@ const {
 const userData = require("../seedData/users");
 const productData = require("../seedData/products");
 const orderData = require("../seedData/order");
-const cartData = require("../seedData/Cart");
+const cartData = require("../seedData/cart");
 const cartItemsData = require("../seedData/cartItems");
 const orderLineItemsData = require("../seedData/orderLineItems");
 /**
