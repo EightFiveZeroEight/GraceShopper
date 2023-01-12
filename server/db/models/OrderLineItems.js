@@ -12,6 +12,10 @@ const OrderLineItems = db.define("orderLineItems", {
     type: Sequelize.FLOAT,
     allowNull: false,
   },
+  product_id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
 });
 
 module.exports = OrderLineItems;
