@@ -14,6 +14,11 @@ const Orders = db.define("orders", {
     type: Sequelize.DATE,
     allowNull: false,
   },
+  description: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    default: "Text not set",
+  },
 });
 
 module.exports = Orders;
