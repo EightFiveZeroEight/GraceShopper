@@ -7,7 +7,7 @@ let randomUserType = () => {
 const random = () => Math.floor(Math.random() * 100);
 
 
-const productsData = [...Array(100)].map((singleProduct) => ({
+const productsData = [...Array(1)].map((singleProduct) => ({
   name: faker.commerce.product(),
   price: faker.commerce.price(),
   category: randomUserType(),
