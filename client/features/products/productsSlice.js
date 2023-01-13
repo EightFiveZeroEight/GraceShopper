@@ -10,19 +10,32 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+export const fetchSingleProduct = createAsyncThunk(
+  "fetchSingleProduct",
+  async (id) => {
+    console.log('before thunk singleProduct')
+    const response = await axios.get(`/api/products/${id}`)
+    console.log('***response', response)
+    return response.data
+  }
+)
+
 const productsSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
+    singleProduct: {},
   },
   reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      console.log("inside extra builders action.payload", action.payload);
-      state.products = [...action.payload];
-      console.log("This is inside of the extraReducers state", state.products);
-    });
-  },
-});
+  extraReducers: {
+    [fetchProducts.fulfilled]: (state, action) => {
+      const products = action.payload
+      state.products = products
+    },
+    [fetchSingleProduct.fulfilled]: (state, action) => {
+      const singleProduct = action.payload
+      state.singleProduct = singleProduct
+    }
+  }});
 
 export default productsSlice.reducer;
