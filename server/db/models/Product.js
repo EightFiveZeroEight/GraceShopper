@@ -25,7 +25,7 @@ const Product = db.define(
     description: {
       type: Sequelize.TEXT,
       allowNull: false,
-      defaultValue: "Still needs to be set",
+      defaultValue: "DEFAULT DESCRIPTION",
     },
     inStock: {
       type: Sequelize.BOOLEAN,
