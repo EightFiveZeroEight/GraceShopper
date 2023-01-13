@@ -22,6 +22,11 @@ const Product = db.define(
       type: Sequelize.INTEGER,
       allowNull: false,
     },
+    description: {
+      type: Sequelize.TEXT,
+      allowNull: false,
+      defaultValue: "Still needs to be set",
+    },
     inStock: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
