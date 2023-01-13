@@ -15,6 +15,10 @@ const User = () => {
   }, []);
 
   const user = useSelector((state) => state.users.user);
+
+  // --------------------------
+  //#region Loggined In Admin Check
+  // --------------------------
   const loggedInUserType = useSelector((state) => state.auth.me.userType);
   const adminInfo = (
     <div id="adminInfo">
@@ -22,6 +26,7 @@ const User = () => {
       <li>User email: {user.email}</li>
     </div>
   );
+  //#endregion Loggined In Admin Check
 
   console.log(loggedInUserType);
   return (

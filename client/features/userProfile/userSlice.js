@@ -12,18 +12,15 @@ export const fetchSingleUser = createAsyncThunk(
   }
 );
 
-// export const fetchSingleUser = createAsyncThunk(
-//   "fetchSingleUser",
-//   async (id, id) => {
-//     const response = await axios.get("/api/users/");
-//     return response.data;
-//   }
-// );
+export const fetchAllUsers = createAsyncThunk("fetchAllUsers", async () => {
+  const { data } = await axios.get("/api/users/");
+  return data;
+});
 
 const usersSlice = createSlice({
   name: "users",
   initialState: {
-    users: [],
+    allUsers: [],
     user: [],
   },
   reducers: {},
@@ -31,6 +28,10 @@ const usersSlice = createSlice({
     [fetchSingleUser.fulfilled]: (state, action) => {
       const user = action.payload;
       state.user = user;
+    },
+    [fetchAllUsers.fulfilled]: (state, action) => {
+      const allUsers = action.payload;
+      state.allUsers = [...allUsers];
     },
   },
 });
