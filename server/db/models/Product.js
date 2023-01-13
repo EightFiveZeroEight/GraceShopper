@@ -28,7 +28,7 @@ const Product = db.define(
       defaultValue: "DEFAULT DESCRIPTION",
     },
     image: {
-      type: Sequelize.string,
+      type: Sequelize.STRING,
       allowNull: false,
       defaultValue: "https://place-hold.it/150x150",
     },
