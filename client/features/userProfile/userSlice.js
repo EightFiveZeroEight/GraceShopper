@@ -2,27 +2,37 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchProducts = createAsyncThunk(
-  "fetchProducts",
-  async (thunkApi) => {
-    const response = await axios.get("/api/products");
-    return response.data;
+export const fetchSingleUser = createAsyncThunk(
+  "fetchSingleUser",
+  async (id) => {
+    const { data } = await axios.get(`/api/users/${id}`);
+    // console.log(`Are we hitting thunk?`, data);
+    // Here we are getting the the entire fulfilled request, including the payload.
+    return data;
   }
 );
 
-const productsSlice = createSlice({
-  name: "products",
+// export const fetchSingleUser = createAsyncThunk(
+//   "fetchSingleUser",
+//   async (id, id) => {
+//     const response = await axios.get("/api/users/");
+//     return response.data;
+//   }
+// );
+
+const usersSlice = createSlice({
+  name: "users",
   initialState: {
-    products: [],
+    users: [],
+    user: [],
   },
   reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      console.log("inside extra builders action.payload", action.payload);
-      state.products = [...action.payload];
-      console.log("This is inside of the extraReducers state", state.products);
-    });
+  extraReducers: {
+    [fetchSingleUser.fulfilled]: (state, action) => {
+      const user = action.payload;
+      state.user = user;
+    },
   },
 });
 
-export default productsSlice.reducer;
+export default usersSlice.reducer;
