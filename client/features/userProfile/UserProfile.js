@@ -14,12 +14,27 @@ const User = () => {
     dispatch(fetchSingleUser(id));
   }, []);
 
-  // const user = useSelector((state) => state);
+  const user = useSelector((state) => state.users.user);
+  const loggedInUserType = useSelector((state) => state.auth.me.userType);
+  const adminInfo = (
+    <div id="adminInfo">
+      <li>User password: {user.password}</li>
+      <li>User email: {user.email}</li>
+    </div>
+  );
 
+  console.log(loggedInUserType);
   return (
     <div>
       {/* Ternary might have something to do with a quasi-async call */}
-      User profile
+      <ul>
+        <li>
+          <h1>Welcome, {user.username}!</h1>
+        </li>
+        <li>Username: {user.username}</li>
+        <li>User ID: {user.id}</li>
+        {loggedInUserType === "admin" ? adminInfo : null}
+      </ul>
     </div>
   );
 };
