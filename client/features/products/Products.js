@@ -1,30 +1,32 @@
-import React, {useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchProducts } from '../products/productsSlice'
-
-import { Link } from 'react-router-dom'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../products/productsSlice";
+import { Link } from "react-router-dom";
 
 const Products = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts())
-  }, [])
+    dispatch(fetchProducts());
+  }, []);
 
-  const products = useSelector(state => state.products.products)
-  console.log('*******', products)
+  const products = useSelector((state) => state.products.products);
+  console.log("*******", products[0]);
 
-  return(
+  return (
     <div>
       <h1> Products </h1>
-      {products.map(product => {
-        <div key={product.id}>
-          <Link to={`/products/${product.id}`} > {product.name}</Link>
-          <div>{product.quantity}</div>
-        </div>
-      })}
+      {products && products.length
+        ? products.map((product) => {
+            console.log("begins mappinng");
+            return (<div key={product.id}>
+              {console.log("enters second div")};{products.name}
+              <Link to={`/products/${product.id}`}> {product.name}</Link>
+              <div>{product.quantity}</div>
+            </div>);
+          })
+        : null}
     </div>
-  )
-
-}
-export default Products
+  );
+};
+export default Products;
