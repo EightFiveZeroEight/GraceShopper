@@ -19,11 +19,17 @@ const Products = () => {
       {products && products.length
         ? products.map((product) => {
             console.log("begins mappinng");
-            return (<div key={product.id}>
-              {console.log("enters second div")};{products.name}
-              <Link to={`/products/${product.id}`}> {product.name}</Link>
-              <div>{product.quantity}</div>
-            </div>);
+            return (
+              <div key={product.id}>
+                {console.log("enters second div")}
+                {products.name}
+                <Link to={`/products/${product.id}`}>
+                  {product.name} We could put a image and all the details in
+                  this link
+                </Link>
+                <div>{product.quantity}</div>
+              </div>
+            );
           })
         : null}
     </div>

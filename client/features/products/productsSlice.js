@@ -25,4 +25,4 @@ const productsSlice = createSlice({
   },
 });
 
-export default productsSlice;
+export default productsSlice.reducer;
