@@ -12,17 +12,14 @@ const Products = () => {
   }, []);
 
   const products = useSelector((state) => state.products.products);
-  console.log("*******", products);
 
   return (
     <div>
       <h1> Products </h1>
       {products && products.length
         ? products.map((product) => {
-            console.log("begins mappinng");
             return (
               <div key={product.id}>
-                {console.log("enters second div")}
                 {products.name}
                 <Link to={`/products/${product.id}`}>
                   {product.name} We could put a image and all the details in
