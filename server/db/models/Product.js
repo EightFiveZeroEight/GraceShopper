@@ -22,6 +22,16 @@ const Product = db.define(
       type: Sequelize.INTEGER,
       allowNull: false,
     },
+    description: {
+      type: Sequelize.TEXT,
+      allowNull: false,
+      defaultValue: "DEFAULT DESCRIPTION",
+    },
+    image: {
+      type: Sequelize.string,
+      allowNull: false,
+      defaultValue: "https://place-hold.it/150x150",
+    },
     inStock: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
