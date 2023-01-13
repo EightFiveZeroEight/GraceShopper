@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
-import AuthForm from '../features/auth/AuthForm';
-import Home from '../features/home/Home';
-import { me } from './store';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import AuthForm from "../features/auth/AuthForm";
+import Home from "../features/home/Home";
+import { me } from "./store";
+import SingleProduct from "../features/products/SingleProduct";
 
 /**
  * COMPONENT
@@ -21,8 +22,12 @@ const AppRoutes = () => {
     <div>
       {isLoggedIn ? (
         <Routes>
+          {/* this is a catch all for unfound routes */}
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
+
+          {/* single product route  */}
+          <Route path="/products/:productId" element={<SingleProduct />} />
         </Routes>
       ) : (
         <Routes>
