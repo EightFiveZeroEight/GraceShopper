@@ -21,20 +21,24 @@ function AllUsers() {
   return (
     <>
       <h1>Here we have all the users</h1>
-      {allUsers && allUsers.length > 0 ? (
-        allUsers.map((singleUser) => {
-          return (
-            <Link to={{ pathname: `/users/${singleUser.id}` }}>
-              {singleUser.username}
-            </Link>
-          );
-        })
-      ) : (
-        <p>
-          Something went wrong, because there aren't any users in the database
-          -- INCLUDING YOU!
-        </p>
-      )}
+      <ol>
+        {allUsers && allUsers.length > 0 ? (
+          allUsers.map((singleUser) => {
+            return (
+              <li>
+                <Link to={{ pathname: `/users/${singleUser.id}` }}>
+                  {singleUser.username}
+                </Link>
+              </li>
+            );
+          })
+        ) : (
+          <p>
+            Something went wrong, because there aren't any users in the database
+            -- INCLUDING YOU!
+          </p>
+        )}
+      </ol>
     </>
   );
 }

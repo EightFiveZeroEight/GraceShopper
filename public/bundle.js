@@ -6319,13 +6319,13 @@ function AllUsers() {
     return state.users.allUsers;
   });
   console.log('this is "allUsers"', allUsers, "with a length of ", allUsers.length);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Here we have all the users"), allUsers && allUsers.length > 0 ? allUsers.map(function (singleUser) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Here we have all the users"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", null, allUsers && allUsers.length > 0 ? allUsers.map(function (singleUser) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
       to: {
         pathname: "/users/".concat(singleUser.id)
       }
-    }, singleUser.username);
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Something went wrong, because there aren't any users in the database -- INCLUDING YOU!"));
+    }, singleUser.username));
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Something went wrong, because there aren't any users in the database -- INCLUDING YOU!")));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllUsers);
 
