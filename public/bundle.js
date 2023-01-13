@@ -5790,7 +5790,7 @@ __webpack_require__.r(__webpack_exports__);
 var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_3__.configureStore)({
   reducer: {
     auth: _features_auth_authSlice__WEBPACK_IMPORTED_MODULE_1__["default"],
-    products: _features_products_productsSlice__WEBPACK_IMPORTED_MODULE_2__["default"].reducer
+    products: _features_products_productsSlice__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   middleware: function middleware(getDefaultMiddleware) {
     return getDefaultMiddleware().concat((redux_logger__WEBPACK_IMPORTED_MODULE_0___default()));
@@ -6227,7 +6227,7 @@ var productsSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice
     });
   }
 });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (productsSlice);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (productsSlice.reducer);
 
 /***/ }),
 

@@ -6,7 +6,7 @@ import productsSlice from '../features/products/productsSlice';
 const store = configureStore({
   reducer: {
     auth: authReducer,
-    products: productsSlice.reducer },
+    products: productsSlice },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 
 });
