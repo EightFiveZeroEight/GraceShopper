@@ -1,6 +1,6 @@
 body {
   font-family: sans-serif;
-  background: #1e1e1e;
+  /* background: #1e1e1e; */
 }
 
 a {
@@ -8,7 +8,7 @@ a {
 }
 
 h1 {
-  color: #d9d9d9;
+  /* color: #d9d9d9; */
 }
 
 label {
@@ -18,7 +18,7 @@ label {
 nav a {
   display: inline-block;
   margin: 1em;
-  color: white;
+  /* color: white; */
 }
 
 form div {
@@ -27,5 +27,5 @@ form div {
 }
 
 a {
-  color: white;
+  /* color: white; */
 }
