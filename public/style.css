@@ -1,7 +1,7 @@
 body {
-  background-color: #FFFFFE;
+  background-color: #fffffe;
   color: #232323;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   /* background: #1e1e1e; */
 }
 
@@ -55,15 +55,15 @@ form div {
 .logout {
   display: inline-block;
   padding: 0.35em 1.2em;
-  border: 0.1em solid #FFFFFF;
+  border: 0.1em solid #ffffff;
   margin: 0 0.3em 0.3em 0;
   border-radius: 0.3em;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
-  background-color: #F45D48;
-  color: #F8F5F2;
+  background-color: #f45d48;
+  color: #f8f5f2;
   text-align: center;
   transition: all 0.2s;
 }
@@ -80,7 +80,22 @@ form div {
 .card {
   margin: 2rem;
   border-radius: 0.3em;
-  background-color: #F8F5F2;
+  background-color: #f8f5f2;
   width: 150px;
   height: 200px;
+}
+
+.card-bottom {
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+img {
+  border-radius: 0.3em;
+}
+
+@media only screen and (max-width: 657px) {
+  .header {
+   flex-direction: column;
+  }
 }
