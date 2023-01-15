@@ -33,7 +33,7 @@ const Products = () => {
 										</div>
 										<div className="product-price">
 											<Link to={`/products/${product.id}`}>
-												{product.price}
+												${product.price}
 											</Link>
 										</div>
 									</div>
