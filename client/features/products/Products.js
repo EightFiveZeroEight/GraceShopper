@@ -16,7 +16,7 @@ const Products = () => {
 
 	return (
 		<div>
-			<h1> Products </h1>
+			<h1 className="products-page"> Products </h1>
 			<div className="card-container">
 				{products && products.length
 					? products.map((product) => {
@@ -24,7 +24,7 @@ const Products = () => {
 								<div className="card" key={product.id}>
 									<div className="card-top">
                   <Link to={`/products/${product.id}`}>
-                    <img src={product.image} />
+                    <img src={product.image} className="card-image"/>
                   </Link>
                   </div>
 									<div className="card-bottom">
