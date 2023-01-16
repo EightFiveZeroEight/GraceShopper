@@ -34,6 +34,7 @@ const productsData = [
     category: "food",
     inStock: true,
     quantity: 500,
+    image: 'https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60'
   },
   {
     name: "Affliction T-Shirt",
