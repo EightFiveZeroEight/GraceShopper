@@ -15244,7 +15244,9 @@ function Cart() {
   //
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", null, theCart[0] ? theCart[0].products.map(function (singleItem, index) {
-    var theCart = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Name: ", singleItem.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Price: ", singleItem.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Quantity Desired: ", singleItem.cartItems.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Price: ", singleItem.cartItems.quantity * singleItem.price));
+    var theCart = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+      key: index
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Name: ", singleItem.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Price: ", singleItem.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Quantity Desired: ", singleItem.cartItems.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Price: ", singleItem.cartItems.quantity * singleItem.price));
     return theCart;
   }) : null);
 }
