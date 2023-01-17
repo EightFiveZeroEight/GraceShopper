@@ -5,6 +5,8 @@ import { fetchSingleProduct } from "./productsSlice";
 import { Link, useParams } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { Button } from "@mui/material";
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -18,8 +20,6 @@ const SingleProduct = () => {
 
   const product = useSelector((state) => state.products.singleProduct);
   console.log("**********product:", product);
-
-
 
   return (
     <div className="single-product-container">
@@ -42,10 +42,23 @@ const SingleProduct = () => {
           animi dolorum eaque neque quam.
         </p>
         <div className="product-bottom">
-
-            <AddIcon onClick={()=>setCount(count+1)} className="add"/>
-          <p className="count">{count}</p>
-          <RemoveIcon className="remove" onClick={()=>setCount(count-1)}/>
+          <div className="product-bottom-left">
+            <AddIcon onClick={() => setCount(count + 1)} className="add" />
+            <p className="count">{count}</p>
+            <RemoveIcon
+              className="remove"
+              onClick={() => setCount(count - 1)}
+            />
+          </div>
+          <div className="product-bottom-right">
+            <Button
+              className="add-to-cart"
+              variant="text"
+              startIcon={<ShoppingCartRoundedIcon />}
+            >
+              Add to Cart
+            </Button>
+          </div>
         </div>
       </div>
     </div>
