@@ -5,8 +5,8 @@ import axios from "axios";
 
 export const fetchCartItems = createAsyncThunk("fetchCartItems", async (id) => {
   try {
-    const { data } = await axios.get(`/api/cart/${id}/cartitems`);
-    console.log(data)
+    const { data } = await axios.get(`/api/cart/${id}/products`);
+    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
@@ -19,6 +19,7 @@ const cartSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCartItems.fulfilled, (state, action) => {
+      console.log(action.payload, "Here is inside of the cartSlice");
       return action.payload;
     });
   },

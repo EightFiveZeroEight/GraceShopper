@@ -9,30 +9,35 @@ function Cart() {
   const dispatch = useDispatch();
 
   //add cart to the store****
-  const cartItems = useSelector((state) => state.cart);
+  const theCart = useSelector((state) => state.cart);
+  const userId = useSelector((state)=> state.auth.me.id)
 
   useEffect(() => {
     dispatch(fetchCartItems(id));
   }, []);
 
-  const singleProduct = useSelector((state) => state.products);
+  console.log(theCart[0] ? theCart[0].products  : null, "At the cart.js");
+  // If we don't use a ternary it won't render as it is undefined during the mount stage of useEffect.
   // Cannot use hooks in a function
   // might be doing eager loading, ask it would give back all objects associated with the cart id.
   //
 
-  const grabThisProductById = (id) => {
-    console.log(id, "Inside GrabThisProductById");
-    dispatch(fetchSingleProduct(id));
-    // Cannot use hooks in a function
-    return singleProduct;
-  };
+
 
   return (
-    <ul>
-      {cartItems.map((singleItem) => {
-        return singleItem.quantity;
-      })}
-    </ul>
+    <ol>
+      {theCart[0] ? theCart[0].products.map((singleItem, index) => {
+        let theCart = (
+          <ul>
+            <li>Name: {singleItem.name}</li>
+            <li>Price: {singleItem.price}</li>
+            <li>Quantity Desired: {singleItem.cartItems.quantity}</li>
+            <li>Price: {singleItem.cartItems.quantity * singleItem.price}</li>
+          </ul>
+        );
+        return theCart;
+      }): null }
+    </ol>
   );
 }
 
