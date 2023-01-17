@@ -13,6 +13,17 @@ export const fetchCartItems = createAsyncThunk("fetchCartItems", async (id) => {
   }
 });
 
+export const addCartItemAsync = createAsyncThunk(
+  "addCartItem",
+  async ({id, count, user}) => {
+  try{
+    const response = await axios.post(`/api/cart/${id}`, {id, count, user})
+    return response.data
+  } catch (err) {
+    console.log('friendly error message:', err)
+  }
+})
+
 const cartSlice = createSlice({
   name: "cart",
   initialState: [], //array of products in cart
@@ -21,6 +32,10 @@ const cartSlice = createSlice({
     builder.addCase(fetchCartItems.fulfilled, (state, action) => {
       return action.payload;
     });
+    builder.addCase(addCartItemAsync.fulfilled, (state, action) => {
+      console.log(state)
+      state.cart.push(action.payload)
+    })
   },
 });
 
