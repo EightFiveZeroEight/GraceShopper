@@ -53,7 +53,7 @@ const SingleProduct = () => {
             <p className="count">{count}</p>
             <RemoveIcon
               className="remove"
-              onClick={() => setCount(count - 1)}
+              onClick={() => (count == 0 ? null : setCount(count - 1))}
             />
           </div>
           <div className="product-bottom-right">

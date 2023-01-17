@@ -15215,13 +15215,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _cartSlice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cartSlice */ "./client/features/cart/cartSlice.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _products_productsSlice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../products/productsSlice */ "./client/features/products/productsSlice.js");
+
 
 
 
 
 function Cart() {
-  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)(),
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useParams)(),
     id = _useParams.id;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
 
@@ -15229,11 +15231,25 @@ function Cart() {
   var cartItems = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.cart;
   });
-  console.log(cartItems);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_cartSlice__WEBPACK_IMPORTED_MODULE_1__.fetchCartItems)(id));
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "hello");
+  var singleProduct = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.products;
+  });
+  // Cannot use hooks in a function
+  // might be doing eager loading, ask it would give back all objects associated with the cart id.
+  //
+
+  var grabThisProductById = function grabThisProductById(id) {
+    console.log(id, "Inside GrabThisProductById");
+    dispatch((0,_products_productsSlice__WEBPACK_IMPORTED_MODULE_3__.fetchSingleProduct)(id));
+    // Cannot use hooks in a function
+    return singleProduct;
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, cartItems.map(function (singleItem) {
+    return singleItem.quantity;
+  }));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Cart);
 
@@ -15607,7 +15623,7 @@ var SingleProduct = function SingleProduct() {
   }, count), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material_Remove__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "remove",
     onClick: function onClick() {
-      return setCount(count - 1);
+      return count == 0 ? null : setCount(count - 1);
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "product-bottom-right"
