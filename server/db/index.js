@@ -20,10 +20,19 @@ User.hasOne(Cart, { as: "cart", foreignKey: "user_id" });
 Cart.belongsTo(User, { as: "user", foreignKey: "user_id" });
 // Cart.belongsTo(User, { as: 'user', foreignKey: 'user_id' });: This association creates the inverse relationship of the above, It creates a one-to-one relationship between the Cart and User models.
 
+// --------------------------
+//#region belongsToMany Virtual Association
+// --------------------------
+// The following code
+Cart.belongsToMany(Product, { through: CartItems });
+Product.belongsToMany(Cart, { through: CartItems });
+// allows this to work:     const eachProduct = await Cart.findAll({ include: Product });
 
-Cart.hasMany(CartItems, { as: "items", foreignKey: "cart_id" });
-// Cart.hasMany(CartItems, { as: 'items', foreignKey: 'cart_id' });: This association creates a one-to-many relationship between the Cart
-CartItems.belongsTo(Cart, { as: "cart", foreignKey: "cart_id" });
+//#endregion belongsToMany Virtual Association
+
+Cart.hasMany(CartItems, { as: "items", foreignKey: "belongs_to_cart" });
+// Cart.hasMany(CartItems, { as: 'items', foreignKey: 'belongs_to_cart' });: This association creates a one-to-many relationship between the Cart
+CartItems.belongsTo(Cart, { as: "cart", foreignKey: "belongs_to_cart" });
 
 Orders.hasMany(OrderLineItems, { as: "items", foreignKey: "order_id" });
 OrderLineItems.belongsTo(Orders, { as: "order", foreignKey: "order_id" });
@@ -41,6 +50,6 @@ module.exports = {
     Orders,
     Cart,
     CartItems,
-    OrderLineItems
+    OrderLineItems,
   },
 };
