@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProduct } from "./productsSlice";
+import { addCartItemAsync } from "../cart/cartSlice";
 import { Link, useParams } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -12,6 +13,11 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
   const [count, setCount] = useState(0);
   const { id } = useParams();
+
+  const user = useSelector((state) => state.auth.me)
+  const clickHandler = () => {
+    dispatch(addCartItemAsync({id, count, user}))
+  }
 
   useEffect(() => {
     console.log(fetchSingleProduct);
@@ -55,6 +61,7 @@ const SingleProduct = () => {
               className="add-to-cart"
               variant="text"
               startIcon={<ShoppingCartRoundedIcon />}
+              onClick={() => clickHandler()}
             >
               Add to Cart
             </Button>
