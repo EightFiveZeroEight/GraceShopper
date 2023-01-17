@@ -15559,7 +15559,7 @@ var SingleProduct = function SingleProduct() {
   }, count), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material_Remove__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: "remove",
     onClick: function onClick() {
-      return setCount(count - 1);
+      return count == 0 ? null : setCount(count - 1);
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "product-bottom-right"
