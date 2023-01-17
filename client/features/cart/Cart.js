@@ -28,7 +28,7 @@ function Cart() {
     <ol>
       {theCart[0] ? theCart[0].products.map((singleItem, index) => {
         let theCart = (
-          <ul>
+          <ul key={index}>
             <li>Name: {singleItem.name}</li>
             <li>Price: {singleItem.price}</li>
             <li>Quantity Desired: {singleItem.cartItems.quantity}</li>
