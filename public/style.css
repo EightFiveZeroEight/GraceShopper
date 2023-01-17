@@ -168,15 +168,26 @@ filter: brightness(95%);
 
 .product-bottom {
   display: flex;
-  margin-left: 30px;
-  flex-direction: row-reverse;
-  /* box-sizing: border-box; */
   justify-content: space-around;
   align-items: center;
-  width: 120px;
+  width: 100%;
   position: absolute;
+
+}
+
+.product-bottom-left{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row-reverse;
   border: 1px solid #232323;
   border-radius: 0.7em;
+  /* background-color: blue; */
+  width: 120px;
+}
+
+product-bottom-right{
+  color: #232323 ;
 }
 
 .add {
@@ -185,10 +196,7 @@ filter: brightness(95%);
   height: 100%;
   transition: all 0.2s;
 }
-.add:hover{
 
-
-}
 
 .count {
   box-sizing: border-box;
