@@ -1,4 +1,5 @@
 node_modules
 npm
 package-lock.json
-
+public/bundle.json
+public/bundle.js.map
