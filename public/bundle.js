@@ -15228,28 +15228,25 @@ function Cart() {
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
 
   //add cart to the store****
-  var cartItems = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+  var theCart = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.cart;
+  });
+  var userId = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.auth.me.id;
   });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_cartSlice__WEBPACK_IMPORTED_MODULE_1__.fetchCartItems)(id));
   }, []);
-  var singleProduct = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
-    return state.products;
-  });
+  console.log(theCart[0] ? theCart[0].products : null, "At the cart.js");
+  // If we don't use a ternary it won't render as it is undefined during the mount stage of useEffect.
   // Cannot use hooks in a function
   // might be doing eager loading, ask it would give back all objects associated with the cart id.
   //
 
-  var grabThisProductById = function grabThisProductById(id) {
-    console.log(id, "Inside GrabThisProductById");
-    dispatch((0,_products_productsSlice__WEBPACK_IMPORTED_MODULE_3__.fetchSingleProduct)(id));
-    // Cannot use hooks in a function
-    return singleProduct;
-  };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, cartItems.map(function (singleItem) {
-    return singleItem.quantity;
-  }));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", null, theCart[0] ? theCart[0].products.map(function (singleItem, index) {
+    var theCart = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Name: ", singleItem.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Price: ", singleItem.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Quantity Desired: ", singleItem.cartItems.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Price: ", singleItem.cartItems.quantity * singleItem.price));
+    return theCart;
+  }) : null);
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Cart);
 
@@ -15286,7 +15283,7 @@ var fetchCartItems = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createAsyn
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return axios__WEBPACK_IMPORTED_MODULE_1__["default"].get("/api/cart/".concat(id, "/cartitems"));
+          return axios__WEBPACK_IMPORTED_MODULE_1__["default"].get("/api/cart/".concat(id, "/products"));
         case 3:
           _yield$axios$get = _context.sent;
           data = _yield$axios$get.data;
@@ -15344,6 +15341,7 @@ var cartSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
   reducers: {},
   extraReducers: function extraReducers(builder) {
     builder.addCase(fetchCartItems.fulfilled, function (state, action) {
+      console.log(action.payload, "Here is inside of the cartSlice");
       return action.payload;
     });
     builder.addCase(addCartItemAsync.fulfilled, function (state, action) {
