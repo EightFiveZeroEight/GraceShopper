@@ -11,18 +11,24 @@ import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const { id } = useParams();
 
-  const user = useSelector((state) => state.auth.me)
+  const user = useSelector((state) => state.auth.me);
   const clickHandler = () => {
-    dispatch(addCartItemAsync({id, count, user}))
-  }
+    dispatch(addCartItemAsync({ id, count, user })  );
+  };
 
   useEffect(() => {
     console.log(fetchSingleProduct);
     dispatch(fetchSingleProduct(id));
   }, []);
+
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+
+  if (!isLoggedIn) {
+    // Storage.setItem("cartItem", [addToCart]);
+  }
 
   const product = useSelector((state) => state.products.singleProduct);
   console.log("**********product:", product);
@@ -53,7 +59,7 @@ const SingleProduct = () => {
             <p className="count">{count}</p>
             <RemoveIcon
               className="remove"
-              onClick={() => (count == 0 ? null : setCount(count - 1))}
+              onClick={() => (count == 1 ? null : setCount(count - 1))}
             />
           </div>
           <div className="product-bottom-right">

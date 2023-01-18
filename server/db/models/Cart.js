@@ -6,11 +6,6 @@ const Cart = db.define("cart", {
   // order_id
   user_id: {
     type: Sequelize.INTEGER,
-    allowNull: true,
-  },
-  cartSession: {
-    type: Sequelize.STRING,
-    unique: true,
     allowNull: false,
   },
 });
