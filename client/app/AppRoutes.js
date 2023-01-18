@@ -13,6 +13,8 @@ import Checkout from "../features/checkout/Checkout";
  * COMPONENT
  */
 
+
+
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ const AppRoutes = () => {
         <Routes>
           {/* this is a catch all for unfound routes */}
           <Route path="/*" element={<Home />} />
-          <Route to="/home" element={<Home />} />
+          <Route path="/home" element={<Home />} />
 
           {/* single product route  */}
           <Route path="/products/:id" element={<SingleProduct />} />
@@ -36,16 +38,18 @@ const AppRoutes = () => {
           {/* ALL User route  */}
           <Route path="/users" element={<AllUsers />} />
           {/* Cart route */}
-          <Route path="/users/:id/cartitems" element={<Cart />}/>
+          <Route path="/users/:id/cartitems" element={<Cart />} />
           {/* Checkout page */}
-          <Route path ="checkout" element={<Checkout />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       ) : (
         <Routes>
-          <Route
+          {/* <Route
             path="/*"
             element={<AuthForm name="login" displayName="Login" />}
-          />
+          /> */}
+
+          <Route path="/home" element={<Home />} />
           <Route
             path="/login"
             element={<AuthForm name="login" displayName="Login" />}
@@ -55,6 +59,7 @@ const AppRoutes = () => {
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
           <Route path="/products" element={<h1>TEST</h1>} />
+          <Route path="users/cartitems" element={<Cart />}/>
 
           <Route path="/products/:id" element={<SingleProduct />} />
         </Routes>
