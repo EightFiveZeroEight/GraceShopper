@@ -38,19 +38,23 @@ router.get("/:id/cartitems", async (req, res, next) => {
 });
 
 router.post("/:id", async (req, res, next) => {
-  try{
-    const {id, count, user} = req.body
-    console.log("**User**", user)
-    const itemToAdd = await Product.findByPk(id)
-    const cartToAddTo = await Cart.findByPk(user.id)
-    res.status(200).json({itemToAdd, cartToAddTo})
+  try {
+    const { id, count, user } = req.body;
+    // console.log("**User**", user);
+    const itemToAdd = await Product.findByPk(id);
+    const cartToAddTo = await Cart.findByPk(user.id);
+    // console.log(cartToAddTo);
+    Cart.findByPk(user.id).then((cart) => {
+      Product.findByPk(id).then((product) => {
+        cart.addProduct(product, { through: { quantity: count } });
+      });
+    });
+    res.status(200).json("0");
     // console.log("**ItemToAdd***", itemToAdd)
     // let newItem = 0
     // while(newItem < count ){
-
     // }
-    res.status(201).send("back-end route hit")
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
