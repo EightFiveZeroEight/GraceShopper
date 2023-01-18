@@ -11,38 +11,21 @@ function Cart() {
   const localCartArr = [];
 
   const [localCart, setLocalCart] = useState([]);
-  const cartArr = localCart[0]
-  console.log(cartArr, "@@@@@@@@@@@@@");
+  const cartArr = localCart[0];
 
   //add cart to the store****
   const theCart = useSelector((state) => state.cart);
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 
   useEffect(() => {
-
     const cartItems = localStorage.getItem("local-cart");
     const arrOfCartItems = JSON.parse(cartItems); // works
-    console.log(arrOfCartItems, "&&&&&&&&&");
     localCartArr.push(arrOfCartItems);
-
-    // setArray(oldArray => [...oldArray,newValue] );
 
     setLocalCart((localCart) => [...localCart, arrOfCartItems]);
 
     dispatch(fetchCartItems(id));
   }, []);
-
-  // console.log('@@@@@@@@@@@',test,'@@@@@@@@@@@')
-
-  // console.log(theCart[0] ? theCart[0].products : null, "At the cart.js");
-  // If we don't use a ternary it won't render as it is undefined during the mount stage of useEffect.
-  // Cannot use hooks in a function
-  // might be doing eager loading, ask it would give back all objects associated with the cart id.
-  //
-
-  // function handleOnClick() {
-
-  // }
 
   return (
     <>
@@ -64,11 +47,23 @@ function Cart() {
           })
         ) : (
           <ul>
-            {cartArr && cartArr.length ? cartArr.map((item, idx)=>{
-              return (
-                <li key={idx}>{item.name}</li>
-              )
-            }): null}
+            {console.log(cartArr)}
+            {cartArr && cartArr.length
+              ? cartArr.map((item, idx) => {
+                  console.log(item);
+                  let theCart = (
+                    <ul key={idx}>
+                      <li>Name: {item.product.name}</li>
+                      <li>Price: {item.product.price}</li>
+                      <li>Count: {item.count}</li>
+                        <li>Total:{item.count * item.product.price}
+                      </li>
+                      <br />
+                    </ul>
+                  );
+                  return theCart;
+                })
+              : null}
           </ul>
         )}
       </ol>
@@ -80,5 +75,3 @@ function Cart() {
 }
 
 export default Cart;
-
-
