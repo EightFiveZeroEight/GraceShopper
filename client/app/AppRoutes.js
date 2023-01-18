@@ -38,7 +38,7 @@ const AppRoutes = () => {
           {/* Cart route */}
           <Route path="/users/:id/cartitems" element={<Cart />}/>
           {/* Checkout page */}
-          <Route path ="checkout" element={<Checkout />}
+          <Route path ="checkout" element={<Checkout />} />
         </Routes>
       ) : (
         <Routes>
