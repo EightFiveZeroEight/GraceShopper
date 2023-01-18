@@ -9,14 +9,50 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { Button } from "@mui/material";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
+const localCart = {
+  name: 'local cart',
+  cartItems : []
+}
+
+const asyncLocalStorage = {
+  setItem: async function (key, value) {
+    await null;
+    return localStorage.setItem(key, value);
+  },
+  getItem: async function (key) {
+    await null;
+    return localStorage.getItem(key);
+  },
+};
+
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const { id } = useParams();
-
+  const product = useSelector((state) => state.products.singleProduct);
   const user = useSelector((state) => state.auth.me);
+
+
+
+
+  // local storage
+
+
   const clickHandler = () => {
-    dispatch(addCartItemAsync({ id, count, user })  );
+    dispatch(addCartItemAsync({ id, count, user }));
+
+    let i = 0
+    while (i < count){
+     localCart.cartItems.push(product)
+     i++
+    }
+
+    // asyncLocalStorage.setItem(`user-cart-${user.id}`, cartObject.toString());
+
+    asyncLocalStorage.setItem(localCart.name, JSON.stringify(localCart.cartItems)); //JSON.stringify???
+
+
+
   };
 
   useEffect(() => {
@@ -29,9 +65,6 @@ const SingleProduct = () => {
   if (!isLoggedIn) {
     // Storage.setItem("cartItem", [addToCart]);
   }
-
-  const product = useSelector((state) => state.products.singleProduct);
-  console.log("**********product:", product);
 
   return (
     <div className="single-product-container">

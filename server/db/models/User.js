@@ -14,7 +14,7 @@ const User = db.define("user", {
   },
   userType: {
     type: Sequelize.ENUM({ values: ["admin", "user", "guest"] }),
-    defaultValue: "guest",
+    defaultValue: "user",
   },
   password: {
     allowNull: false,
