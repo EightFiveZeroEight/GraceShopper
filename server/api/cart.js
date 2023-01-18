@@ -50,10 +50,6 @@ router.post("/:id", async (req, res, next) => {
       });
     });
     res.status(200).json("0");
-    // console.log("**ItemToAdd***", itemToAdd)
-    // let newItem = 0
-    // while(newItem < count ){
-    // }
   } catch (err) {
     next(err);
   }
