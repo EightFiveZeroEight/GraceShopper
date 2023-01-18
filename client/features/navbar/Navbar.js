@@ -18,10 +18,9 @@ const Navbar = () => {
   return (
     <div>
       <nav>
-
         {isLoggedIn ? (
           <>
-					<div className="header">
+            <div className="header">
               <h1 className="title">GraceShopper</h1>
               <h3 className="user">Welcome, {username}</h3>
             </div>
@@ -45,17 +44,26 @@ const Navbar = () => {
             </div>
           </>
         ) : (
-					<>
-					  <div className="header">
+          <>
+            <div className="header">
               <h1 className="title">GraceShopper</h1>
-
             </div>
-          <div className="nav-bar-left">
 
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
-          </div>
-					</>
+            <div className="nav-bar">
+              <div className="nav-bar-left">
+                {/* The navbar will show these links after you log in */}
+                <Link to="/home">Home</Link>
+                {/* <Link to={`/users/${myId}`}>Account</Link> */}
+                <Link to={`/users/cartitems`}>Cart</Link>
+              </div>
+              <div className="nav-bar-right">
+                {/* <Link to={`/users/`}>All Users</Link> */}
+
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Sign Up</Link>
+              </div>
+            </div>
+          </>
         )}
       </nav>
       <hr />

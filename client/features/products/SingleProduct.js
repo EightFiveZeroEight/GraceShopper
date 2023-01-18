@@ -9,29 +9,65 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { Button } from "@mui/material";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
+const localCart = {
+  name: "local-cart",
+  cartItems: [],
+};
+
+// === LOCAL STORAGE HELPER FUNCTIONS
+const asyncLocalStorage = {
+  // functions to add and get local storage
+  setItem: async function (key, value) {
+    await null;
+    return localStorage.setItem(key, value);
+  },
+  getItem: async function (key) {
+    await null;
+    return localStorage.getItem(key);
+  },
+};
+
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const { id } = useParams();
-
+  const product = useSelector((state) => state.products.singleProduct);
   const user = useSelector((state) => state.auth.me);
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+
+  //  ==== ON ADD TO CART ====
   const clickHandler = () => {
-    dispatch(addCartItemAsync({ id, count, user })  );
+    //if they're logged in -----
+    setCount(1)
+
+    if (isLoggedIn) { //true
+      console.log('you are logged in')
+      dispatch(addCartItemAsync({ id, count, user }));
+    } else {
+      // --- if they're a guest
+      //push multiple items to arr based off count state
+      let i = 0;
+      while (i < count) {
+        localCart.cartItems.push(product);
+        i++;
+      }
+
+
+      //add the local cart obj / arr to local storage
+      asyncLocalStorage.setItem(
+        localCart.name,
+        JSON.stringify(localCart.cartItems)
+      );
+
+      <Link to="/signup"></Link>
+    }
   };
 
+  // ==== ON COMPONENT LOAD
   useEffect(() => {
     console.log(fetchSingleProduct);
     dispatch(fetchSingleProduct(id));
   }, []);
-
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-
-  if (!isLoggedIn) {
-    // Storage.setItem("cartItem", [addToCart]);
-  }
-
-  const product = useSelector((state) => state.products.singleProduct);
-  console.log("**********product:", product);
 
   return (
     <div className="single-product-container">
