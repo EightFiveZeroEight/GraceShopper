@@ -82,21 +82,3 @@ function Cart() {
 export default Cart;
 
 
-// var array = [[1, 2], [3, 4]];
-// var double = x => x * 2;
-// var doubledArray = array.map( subarray => subarray.map( double ));
-
-// {
-/* <>
-<ol>
-{localCart.map((item, idx)=>{
-  return <li key={idx}>{item[idx].name}</li>
-})}
-</ol>
-</>
-)}
-<button>
-<Link to="/checkout">Checkout</Link>
-</button>
-</ol> */
-// }
