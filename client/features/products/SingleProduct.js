@@ -10,11 +10,13 @@ import { Button } from "@mui/material";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
 const localCart = {
-  name: 'local cart',
-  cartItems : []
-}
+  name: "local-cart",
+  cartItems: [],
+};
 
+// === LOCAL STORAGE HELPER FUNCTIONS
 const asyncLocalStorage = {
+  // functions to add and get local storage
   setItem: async function (key, value) {
     await null;
     return localStorage.setItem(key, value);
@@ -31,40 +33,41 @@ const SingleProduct = () => {
   const { id } = useParams();
   const product = useSelector((state) => state.products.singleProduct);
   const user = useSelector((state) => state.auth.me);
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 
-
-
-
-  // local storage
-
-
+  //  ==== ON ADD TO CART ====
   const clickHandler = () => {
-    dispatch(addCartItemAsync({ id, count, user }));
+    //if they're logged in -----
+    setCount(1)
 
-    let i = 0
-    while (i < count){
-     localCart.cartItems.push(product)
-     i++
+    if (isLoggedIn) { //true
+      console.log('you are logged in')
+      dispatch(addCartItemAsync({ id, count, user }));
+    } else {
+      // --- if they're a guest
+      //push multiple items to arr based off count state
+      let i = 0;
+      while (i < count) {
+        localCart.cartItems.push(product);
+        i++;
+      }
+
+
+      //add the local cart obj / arr to local storage
+      asyncLocalStorage.setItem(
+        localCart.name,
+        JSON.stringify(localCart.cartItems)
+      );
+
+      <Link to="/signup"></Link>
     }
-
-    // asyncLocalStorage.setItem(`user-cart-${user.id}`, cartObject.toString());
-
-    asyncLocalStorage.setItem(localCart.name, JSON.stringify(localCart.cartItems)); //JSON.stringify???
-
-
-
   };
 
+  // ==== ON COMPONENT LOAD
   useEffect(() => {
     console.log(fetchSingleProduct);
     dispatch(fetchSingleProduct(id));
   }, []);
-
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-
-  if (!isLoggedIn) {
-    // Storage.setItem("cartItem", [addToCart]);
-  }
 
   return (
     <div className="single-product-container">
