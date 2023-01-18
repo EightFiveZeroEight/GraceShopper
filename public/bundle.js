@@ -15253,7 +15253,6 @@ function Cart() {
     localCart = _useState2[0],
     setLocalCart = _useState2[1];
   var cartArr = localCart[0];
-  console.log(cartArr, "@@@@@@@@@@@@@");
 
   //add cart to the store****
   var theCart = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
@@ -15265,38 +15264,23 @@ function Cart() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var cartItems = localStorage.getItem("local-cart");
     var arrOfCartItems = JSON.parse(cartItems); // works
-    console.log(arrOfCartItems, "&&&&&&&&&");
     localCartArr.push(arrOfCartItems);
-
-    // setArray(oldArray => [...oldArray,newValue] );
-
     setLocalCart(function (localCart) {
       return [].concat(_toConsumableArray(localCart), [arrOfCartItems]);
     });
     dispatch((0,_cartSlice__WEBPACK_IMPORTED_MODULE_1__.fetchCartItems)(id));
   }, []);
-
-  // console.log('@@@@@@@@@@@',test,'@@@@@@@@@@@')
-
-  // console.log(theCart[0] ? theCart[0].products : null, "At the cart.js");
-  // If we don't use a ternary it won't render as it is undefined during the mount stage of useEffect.
-  // Cannot use hooks in a function
-  // might be doing eager loading, ask it would give back all objects associated with the cart id.
-  //
-
-  // function handleOnClick() {
-
-  // }
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", null, isLoggedIn && theCart[0] ? theCart[0].products.map(function (singleItem, index) {
     var theCart = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
       key: index
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Name: ", singleItem.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Price: ", singleItem.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Quantity Desired: ", singleItem.cartItems.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Price: ", singleItem.cartItems.quantity * singleItem.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null));
     return theCart;
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, cartArr && cartArr.length ? cartArr.map(function (item, idx) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, console.log(cartArr), cartArr && cartArr.length ? cartArr.map(function (item, idx) {
+    console.log(item);
+    var theCart = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
       key: idx
-    }, item.name);
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Name: ", item.product.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Price: ", item.product.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Count: ", item.count), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Total:", item.count * item.product.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null));
+    return theCart;
   }) : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
     to: "/checkout"
   }, "Checkout")));
@@ -15722,7 +15706,7 @@ var SingleProduct = function SingleProduct() {
     setCount(1);
     if (isLoggedIn) {
       //true
-      console.log('you are logged in');
+      console.log("you are logged in");
       dispatch((0,_cart_cartSlice__WEBPACK_IMPORTED_MODULE_3__.addCartItemAsync)({
         id: id,
         count: count,
@@ -15731,11 +15715,11 @@ var SingleProduct = function SingleProduct() {
     } else {
       // --- if they're a guest
       //push multiple items to arr based off count state
-      var i = 0;
-      while (i < count) {
-        localCart.cartItems.push(product);
-        i++;
-      }
+      localCart.cartItems.push({
+        product: product,
+        count: count
+      });
+      console.log(localCart.cartItems);
 
       //add the local cart obj / arr to local storage
       asyncLocalStorage.setItem(localCart.name, JSON.stringify(localCart.cartItems));

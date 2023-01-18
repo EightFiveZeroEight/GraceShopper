@@ -38,20 +38,17 @@ const SingleProduct = () => {
   //  ==== ON ADD TO CART ====
   const clickHandler = () => {
     //if they're logged in -----
-    setCount(1)
+    setCount(1);
 
-    if (isLoggedIn) { //true
-      console.log('you are logged in')
+    if (isLoggedIn) {
+      //true
+      console.log("you are logged in");
       dispatch(addCartItemAsync({ id, count, user }));
     } else {
       // --- if they're a guest
       //push multiple items to arr based off count state
-      let i = 0;
-      while (i < count) {
-        localCart.cartItems.push(product);
-        i++;
-      }
-
+      localCart.cartItems.push({ product, count });
+      console.log(localCart.cartItems);
 
       //add the local cart obj / arr to local storage
       asyncLocalStorage.setItem(
@@ -59,7 +56,7 @@ const SingleProduct = () => {
         JSON.stringify(localCart.cartItems)
       );
 
-      <Link to="/signup"></Link>
+      <Link to="/signup"></Link>;
     }
   };
 
