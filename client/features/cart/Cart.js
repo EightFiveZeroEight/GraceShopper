@@ -68,8 +68,8 @@ function Cart() {
           </ul>
         )}
       </ol>
-      <button>
-        <Link to="/checkout">Checkout</Link>
+      <button onClick={()=> alert("You need to be signed in to checkout")}>
+        Checkout
       </button>
     </>
   );
