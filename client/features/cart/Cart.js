@@ -33,13 +33,15 @@ function Cart() {
         {isLoggedIn && theCart[0] ? (
           theCart[0].products.map((singleItem, index) => {
             let theCart = (
-              <ul key={index}>
-                <li>Name: {singleItem.name}</li>
-                <li>Price: {singleItem.price}</li>
-                <li>Quantity Desired: {singleItem.cartItems.quantity}</li>
-                <li>
-                  Price: {singleItem.cartItems.quantity * singleItem.price}
-                </li>
+              <ul key={index} >
+                <div className="cart-item-container">
+                  <li className="list-item">Name: {singleItem.name}</li>
+                  <li className="list-item">Price: {singleItem.price}</li>
+                  <li className="list-item">Quantity Desired: {singleItem.cartItems.quantity}</li>
+                  <li className="list-item">
+                    Price: {singleItem.cartItems.quantity * singleItem.price}
+                  </li>
+                </div>
                 <br />
               </ul>
             );
@@ -56,8 +58,7 @@ function Cart() {
                       <li>Name: {item.product.name}</li>
                       <li>Price: {item.product.price}</li>
                       <li>Count: {item.count}</li>
-                        <li>Total:{item.count * item.product.price}
-                      </li>
+                      <li>Total:{item.count * item.product.price}</li>
                       <br />
                     </ul>
                   );

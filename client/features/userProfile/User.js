@@ -22,24 +22,24 @@ const User = () => {
   const loggedInUserType = useSelector((state) => state.auth.me.userType);
   const adminInfo = (
     <div id="adminInfo">
-      <li>User password: {user.password}</li>
-      <li>User email: {user.email}</li>
+      {/* <li className="list-item">User password: {user.password}</li> */}
+      <li className="list-item">User email: {user.email}</li>
     </div>
   );
   //#endregion Loggined In Admin Check
 
-  console.log(loggedInUserType);
   return (
-    <div>
-      {/* Ternary might have something to do with a quasi-async call */}
-      <ul>
-        <li>
-          <h1>Welcome, {user.username}!</h1>
-        </li>
-        <li>Username: {user.username}</li>
-        <li>User ID: {user.id}</li>
-        {loggedInUserType === "admin" ? adminInfo : null}
-      </ul>
+    <div className="user-container">
+      <div className="user-card">
+        <ul>
+          <li className="list-item">
+            <h1 className="user-title">Welcome, {user.username}!</h1>
+          </li>
+          <li className="list-item">Username: {user.username}</li>
+          <li className="list-item">User ID: {user.id}</li>
+          {loggedInUserType === "admin" ? adminInfo : null}
+        </ul>
+      </div>
     </div>
   );
 };
