@@ -1,48 +1,28 @@
-# graceshopper
-  test
-## Setup
+## E-Commerce Platform
 
-Test PR - Tamim
+This is an e-commerce platform built using the PERN (PostgreSQL, Express, React, and Node.js) stack. The platform provides a generic and scalable solution for businesses to start selling online and manage their products, orders, and customers.
 
-To use this as boilerplate, you'll need to take the following steps:
+## Requirements
+- Node.js
+- PostgreSQL
+- npm (Node Package Manager)
+- Postman / SQLEctron recommended for aiding in the development of the backend.
 
-- Don't fork or clone this repo! Instead, create a new, empty
-  directory on your machine and `git init` (or create an empty repo on
-  Github and clone it to your local machine)
+## Installation
+1. Clone the repository: `git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY`
+2. Install the dependencies: `npm install`
+3. Set up the PostgreSQL database and configure the connection.
+4. Seed the project with sample data: `npm run seed`
+5. Start the development server: `npm run start:dev`
 
-- Now you will have to add the graceshopper as a remote and merge it into your own repository.
+## Features
+- User authentication
+- Product management (CRUD operations)
+- Order management (view, update, and delete orders)
+- Customer management (view and update customer information)
 
-```
-git remote add boilermaker git@github.com:FullstackAcademy/graceshopper-v2.git
-git fetch boilermaker
-git merge boilermaker/main
-git branch -m master main
-```
+## Contribution
+This project is open to contributions and bug reports. Feel free to create a pull request or open an issue.
 
-## Customize
-
-Now that you've got the code, follow these steps to get acclimated:
-
-- Update project name and description in `package.json`
-- `npm install`
-- Create two postgres databases (`MY_APP_NAME` should match the `name`
-  parameter in `package.json`):
-- These commands will create both your **development** and **test** databases
-
-```
-createdb <YOUR APP NAME HERE FROM package.json>
-createdb <YOUR APP NAME HERE FROM package.json>-test
-```
-
-- By default, running `npm test` will use your test database, while
-  regular development uses development database
-
-## Start
-
-Sync and seed your database by running `npm run seed`. Running `npm run start:dev` will make great things happen!
-
-- start:dev will both start your server and build your client side files using webpack
-- start:dev:logger is the same as start:dev, but you will see your SQL queries (can be helpful for debugging)
-- start:dev:seed will start your server and also seed your database (this is useful when you are making schema changes and you don't want to run your seed script separately)
-
-test hayden
+## License
+This project is licensed under the MIT license. 
